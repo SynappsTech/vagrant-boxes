@@ -1,0 +1,12 @@
+dependencies:
+  pre:
+    - wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip
+    - sudo mkdir /usr/local/packer
+    - sudo unzip -d /usr/local/packer packer_0.8.6_linux_amd64.zip
+    - rm -rf packer_0.8.6_linux_amd64.zip
+machine:
+  environment:
+    PATH: $PATH:/usr/local/packer
+test:
+  post:
+    - cd packer && packer validate ubuntu-15.10-server-amd64.json
